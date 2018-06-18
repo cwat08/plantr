@@ -35,6 +35,18 @@ const squash = {
 Vegetable.bulkCreate([carrot, lettuce, squash])
   .then(() => console.log('veggies added!'))
 
+const newGardener = {
+  name: 'Amy',
+  age: 28,
+};
+
+Gardener.create(newGardener)
+  .then(Gardener.update({favoriteVegetableId: Vegetable.findOne({where: {name: 'Carrot'}})}))
+  .then(() => console.log('Gardener added!'));
+
+
+
+
 
 db.sync({force: false})
   .then(() => {
@@ -46,3 +58,4 @@ db.sync({force: false})
     console.log(err)
     db.close();
   })
+
